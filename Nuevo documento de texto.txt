@@ -1,0 +1,80 @@
+Crear un archivo
+
+	- usar libreria de node FileSystem
+	https://nodejs.org/dist/latest-v14.x/docs/api/fs.html
+
+Recibir información desde la línea de comandos
+
+	ver argumentos mandados:
+	primero agregamos la variable
+	- node app --base=9
+	los mostramos
+	console.log(process.argsv);
+
+	// este código es estatico por lo que depende de como se mande el parámetro
+	// si funciona o no (orden, sintaxis, etc)
+	recuperamos el valor de las variables
+	- const [ , , arg3 = 'base=5' ] = process.argv;
+	- const [ , base = 5 ] = arg3.split('=');
+
+	Esto anterior lo resuelve la librería Yargs:
+	https://www.npmjs.com/package/yargs
+	- npm i yargs
+	- const argv = require('yargs').argv;
+	- node app --base=5 ó node app --base 5
+	yargs ofrece el comando:
+	- node app --help  
+
+	configuraciones de yargs:
+	https://yargs.js.org/docs/
+	.options(key, [opt])
+	ejecutamos la app mas el atributo --help que muestra todas las banderas creadas en la app
+	- node app --help  
+	
+
+
+Empezar a utilizar packetes de terceros
+
+	crear el package.json. Con esto le decimos a la aplicación que dependencias necesita para funcionar
+	- npm init
+		nombre de la app
+		version: 0.0.1 (se puede cambiar desde package.json)
+		descripción: 'ffwlfjewfwejflw'
+		punto de inicio: el archivo principal
+		test command: (comando para hacer pruebas se puede dejar por def.)
+		git repository:
+		keywords: (palabras clave para buscarlo en npm)
+		author: Georgy Copado
+		license: (ISC) MIT	(se puede dejar)
+		dar enter
+
+		en "scripts" se encuentran los comandos para ejecutar la aplicación con:
+		- npm run "comando"
+
+	empezar a instalar los packetes de terceros.
+	- npm install colors
+	en el package.json se agrega la sección de "dependencies" (paquetes necesarios para ejecutar la app)
+	Tambien se agrega el archivo package-lock.json (como se construyen las dependencias)
+	Así tambien la carpeta node_modules (aqui estarán la carpetas de las dependecias(incluye las de desarrollo) que utilice la app)
+
+	Para instalar packetes no como dependecias sino en modo de desarrollo. Ej
+	Se añade la bandera --save-dev
+	- npm install nodemon --save-dev
+	esto crea la sección "devDependencies" en package.json para dependencias de desarrollo
+	
+	Desistalar un packete
+ 	- npm uninstall nodemon
+
+	Instalar una versión especifica de un packete
+	- npm i colors@1.0.0
+
+	Instalar si hay versiones nuevas de los packetes instalados
+	- npm update
+
+- Preparar repositorio Git
+
+	crear archivo .gitignore(archivos que quiero ignorar en el repositorio)
+	inicializar el repositorio
+	- git init
+	preparar todos los archivos para una fotografia
+	- git add .
